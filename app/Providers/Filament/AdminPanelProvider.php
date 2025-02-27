@@ -32,6 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->favicon('/storage/assets/logo.png')
             ->login()
             ->passwordReset()
+            ->sidebarCollapsibleOnDesktop()
             ->profile(isSimple: false)
             ->colors([
                 'primary' => Color::Blue,
