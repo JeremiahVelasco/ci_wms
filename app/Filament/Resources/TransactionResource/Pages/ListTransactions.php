@@ -85,11 +85,6 @@ class ListTransactions extends ListRecords
                         ->options(Product::pluck('item', 'id'))
                         ->searchable()
                         ->required(),
-                    Select::make('supplier_id')
-                        ->label('Supplier')
-                        ->options(Supplier::pluck('name', 'id'))
-                        ->searchable()
-                        ->required(),
                     TextInput::make('amount')
                         ->label('Quantity')
                         ->required()
