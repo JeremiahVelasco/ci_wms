@@ -47,6 +47,9 @@ class ListTransactions extends ListRecords
                         ->options(Customer::pluck('name', 'id'))
                         ->searchable()
                         ->required(),
+                    TextInput::make('amount')
+                        ->label('Quantity')
+                        ->required()
                 ])
                 ->action(function (array $data) {
                     DB::transaction(function () use ($data) {
@@ -59,8 +62,8 @@ class ListTransactions extends ListRecords
                         ]);
 
                         // ! For product increment
-                        // $product = Product::find($data['product_id']);
-                        // $product->increment('stock', $data['amount']);
+                        $product = Product::find($data['product_id']);
+                        $product->increment('stock', $data['amount']);
                     });
                 }),
             Action::make('Add Outgoing Inventory')
@@ -87,6 +90,9 @@ class ListTransactions extends ListRecords
                         ->options(Supplier::pluck('name', 'id'))
                         ->searchable()
                         ->required(),
+                    TextInput::make('amount')
+                        ->label('Quantity')
+                        ->required()
                 ])
                 ->action(function (array $data) {
                     DB::transaction(function () use ($data) {
@@ -100,8 +106,8 @@ class ListTransactions extends ListRecords
                         ]);
 
                         // ! For product decrement
-                        // $product = Product::find($data['product_id']);
-                        // $product->decrement('stock', $data['amount']);
+                        $product = Product::find($data['product_id']);
+                        $product->decrement('stock', $data['amount']);
                     });
                 }),
         ];
