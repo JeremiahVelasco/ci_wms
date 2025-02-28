@@ -24,12 +24,13 @@ class ListTransactions extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('Add Incoming Inventory')
+            Action::make('create_incoming_transaction')
                 ->label('Add Incoming Inventory')
                 ->icon('heroicon-m-arrow-down-on-square')
                 ->color('success')
                 ->slideOver()
                 ->modalWidth('xl')
+                ->visible(fn() => auth()->user()->can('create_incoming_transaction_transaction'))
                 ->form([
                     Select::make('product_id')
                         ->label('Product')
@@ -61,17 +62,18 @@ class ListTransactions extends ListRecords
                             'actor' => Auth::user()->name
                         ]);
 
-                        // ! For product increment
+                        // For product increment
                         $product = Product::find($data['product_id']);
                         $product->increment('stock', $data['amount']);
                     });
                 }),
-            Action::make('Add Outgoing Inventory')
+            Action::make('create_outgoing_transaction')
                 ->label('Add Outgoing Inventory')
                 ->icon('heroicon-m-arrow-up-on-square')
                 ->color('warning')
                 ->slideOver()
                 ->modalWidth('xl')
+                ->visible(fn() => auth()->user()->can('create_outgoing_transaction_transaction'))
                 ->form([
                     TextInput::make('job_order')
                         ->label('Job Order #'),
@@ -100,7 +102,7 @@ class ListTransactions extends ListRecords
                             'actor' => Auth::user()->name
                         ]);
 
-                        // ! For product decrement
+                        // For product decrement
                         $product = Product::find($data['product_id']);
                         $product->decrement('stock', $data['amount']);
                     });

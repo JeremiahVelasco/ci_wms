@@ -35,6 +35,22 @@ class TransactionPolicy
     }
 
     /**
+     * Determine whether the user can create incoming transaction.
+     */
+    public function createIncomingTransaction(User $user): bool
+    {
+        return $user->can('create_incoming_transaction');
+    }
+
+    /**
+     * Determine whether the user can outgoing transaction.
+     */
+    public function createOutgoingTransaction(User $user): bool
+    {
+        return $user->can('create_outgoing_transaction');
+    }
+
+    /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Transaction $transaction): bool
