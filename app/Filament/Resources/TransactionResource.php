@@ -103,7 +103,7 @@ class TransactionResource extends Resource implements HasShieldPermissions
                     ),
                 TextColumn::make('customer.name')
                     ->searchable(),
-                TextColumn::make('amount')
+                TextColumn::make('job_order')
                     ->badge(),
                 TextColumn::make('created_at')
                     ->date()

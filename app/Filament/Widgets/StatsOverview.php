@@ -20,6 +20,8 @@ class StatsOverview extends BaseWidget
             Stat::make('Total Inventory', Product::count()),
             Stat::make('Low Inventory', $lowStockLevel)
                 ->icon('heroicon-m-exclamation-circle'),
+            Stat::make('Out of Stock', Product::where('stock', 0)->count())
+                ->icon('heroicon-m-exclamation-triangle'),
             Stat::make('Total Incoming Transactions', Transaction::where('status', 1)->count()),
             Stat::make('Total Outgoing Transactions', Transaction::where('status', 2)->count()),
         ];
