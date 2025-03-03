@@ -94,7 +94,7 @@ class TransactionResource extends Resource implements HasShieldPermissions
                     ->weight(FontWeight::SemiBold)
                     ->searchable()
                     ->description(
-                        fn(Model $record): string => 'Brand: ' . $record->product->brand
+                        fn(Model $record): string => $record->product?->brand ? 'Brand: ' . $record->product->brand : null
                     ),
                 TextColumn::make('supplier.name')
                     ->searchable()
