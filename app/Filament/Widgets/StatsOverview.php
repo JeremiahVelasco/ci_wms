@@ -11,8 +11,15 @@ class StatsOverview extends BaseWidget
 {
     protected function getStats(): array
     {
+        $lowStockLevel = Product::where('stock', 0)
+            ->orWhereRaw('stock <= min_stock')
+            ->orWhereRaw('stock > min_stock AND stock <= (min_stock + 5)')
+            ->count();
+
         return [
             Stat::make('Total Inventory', Product::count()),
+            Stat::make('Low Inventory', $lowStockLevel)
+                ->icon('heroicon-m-exclamation-circle'),
             Stat::make('Total Incoming Transactions', Transaction::where('status', 1)->count()),
             Stat::make('Total Outgoing Transactions', Transaction::where('status', 2)->count()),
         ];

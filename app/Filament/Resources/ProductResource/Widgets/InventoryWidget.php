@@ -12,7 +12,7 @@ class InventoryWidget extends BaseWidget
     {
         $lowStockLevel = Product::where('stock', 0)
             ->orWhereRaw('stock <= min_stock')
-            ->orWhereRaw('stock > min_stock AND stock <= (min_stock + 10)')
+            ->orWhereRaw('stock > min_stock AND stock <= (min_stock + 5)')
             ->count();
 
         return [
