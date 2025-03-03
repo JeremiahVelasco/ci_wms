@@ -32,6 +32,8 @@ class ListTransactions extends ListRecords
                 ->modalWidth('xl')
                 ->visible(fn() => auth()->user()->can('create_incoming_transaction_transaction'))
                 ->form([
+                    TextInput::make('job_order')
+                        ->label('Job Order #'),
                     Select::make('product_id')
                         ->label('Product')
                         ->options(Product::pluck('item', 'id'))
@@ -43,11 +45,6 @@ class ListTransactions extends ListRecords
                         ->options(Supplier::pluck('name', 'id'))
                         ->searchable()
                         ->required(),
-                    Select::make('customer_id')
-                        ->label('Customer')
-                        ->options(Customer::pluck('name', 'id'))
-                        ->searchable()
-                        ->required(),
                     TextInput::make('amount')
                         ->label('Quantity')
                         ->required()
@@ -56,9 +53,9 @@ class ListTransactions extends ListRecords
                     DB::transaction(function () use ($data) {
                         $transaction = Transaction::create([
                             'status' => 1,
+                            'job_order' => $data['job_order'],
                             'product_id' => $data['product_id'],
                             'supplier_id' => $data['supplier_id'],
-                            'customer_id' => $data['customer_id'],
                             'actor' => Auth::user()->name
                         ]);
 
