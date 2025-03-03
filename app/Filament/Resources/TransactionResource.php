@@ -99,7 +99,7 @@ class TransactionResource extends Resource implements HasShieldPermissions
                 TextColumn::make('supplier.name')
                     ->searchable()
                     ->description(
-                        fn(Model $record): string => 'Contact: ' . $record->supplier->contact
+                        fn(Model $record): ?string => $record->supplier->contact ? 'Contact: ' . $record->supplier->contact : null
                     ),
                 TextColumn::make('customer.name')
                     ->searchable(),
