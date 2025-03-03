@@ -35,22 +35,6 @@ class TransactionPolicy
     }
 
     /**
-     * Determine whether the user can create incoming transaction.
-     */
-    public function createIncomingTransaction(User $user): bool
-    {
-        return $user->can('create_incoming_transaction');
-    }
-
-    /**
-     * Determine whether the user can outgoing transaction.
-     */
-    public function createOutgoingTransaction(User $user): bool
-    {
-        return $user->can('create_outgoing_transaction');
-    }
-
-    /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Transaction $transaction): bool
@@ -95,7 +79,7 @@ class TransactionPolicy
      */
     public function restore(User $user, Transaction $transaction): bool
     {
-        return $user->can('restore_transaction');
+        return $user->can('{{ Restore }}');
     }
 
     /**
@@ -103,7 +87,7 @@ class TransactionPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_transaction');
+        return $user->can('{{ RestoreAny }}');
     }
 
     /**
@@ -111,7 +95,7 @@ class TransactionPolicy
      */
     public function replicate(User $user, Transaction $transaction): bool
     {
-        return $user->can('replicate_transaction');
+        return $user->can('{{ Replicate }}');
     }
 
     /**
@@ -119,6 +103,6 @@ class TransactionPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_transaction');
+        return $user->can('{{ Reorder }}');
     }
 }

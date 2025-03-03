@@ -25,7 +25,7 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path('')
             ->brandName('Unigear Phils Corp.')
             ->brandLogo('/storage/assets/logo.png')
             ->brandLogoHeight('8rem')
