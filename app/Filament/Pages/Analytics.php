@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Filament\Widgets\IncomingTransactionsPerMonth;
 use App\Filament\Widgets\OutgoingTransactionsPerMonth;
+use App\Filament\Widgets\TransactionWidget;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Pages\Page;
@@ -37,8 +38,7 @@ class Analytics extends Page implements HasForms, HasTable
     public function getHeaderWidgets(): array
     {
         return [
-            IncomingTransactionsPerMonth::make(),
-            OutgoingTransactionsPerMonth::make()
+            TransactionWidget::make()
         ];
     }
 

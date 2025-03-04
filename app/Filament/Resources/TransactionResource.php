@@ -90,6 +90,8 @@ class TransactionResource extends Resource implements HasShieldPermissions
                         '1' => 'Incoming Inventory',
                         '2' => 'Outgoing Inventory',
                     }),
+                TextColumn::make('job_order')
+                    ->prefix('#'),
                 TextColumn::make('product.item')
                     ->weight(FontWeight::SemiBold)
                     ->searchable()
@@ -103,8 +105,6 @@ class TransactionResource extends Resource implements HasShieldPermissions
                     ),
                 TextColumn::make('customer.name')
                     ->searchable(),
-                TextColumn::make('job_order')
-                    ->badge(),
                 TextColumn::make('created_at')
                     ->date()
                     ->label('Transaction date')
