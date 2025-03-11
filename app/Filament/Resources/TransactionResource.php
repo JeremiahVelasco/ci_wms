@@ -91,6 +91,7 @@ class TransactionResource extends Resource implements HasShieldPermissions
                         '2' => 'Outgoing Inventory',
                     }),
                 TextColumn::make('job_order')
+                    ->searchable()
                     ->prefix('#'),
                 TextColumn::make('product.item')
                     ->weight(FontWeight::SemiBold)
