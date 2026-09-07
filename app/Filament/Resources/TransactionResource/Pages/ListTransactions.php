@@ -55,6 +55,7 @@ class ListTransactions extends ListRecords
                             'job_order' => $data['job_order'],
                             'product_id' => $data['product_id'],
                             'supplier_id' => $data['supplier_id'],
+                            'amount' => $data['amount'],
                             'actor' => Auth::user()->name
                         ]);
 
@@ -95,6 +96,7 @@ class ListTransactions extends ListRecords
                             'product_id' => $data['product_id'],
                             'supplier_id' => $data['supplier_id'] ?? null,
                             'customer_id' => $data['customer_id'] ?? null,
+                            'amount' => $data['amount'],
                             'actor' => Auth::user()->name
                         ]);
 

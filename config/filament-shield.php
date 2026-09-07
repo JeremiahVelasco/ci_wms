@@ -27,7 +27,7 @@ return [
     ],
 
     'panel_user' => [
-        'enabled' => false,
+        'enabled' => true,
         'name' => 'panel_user',
     ],
 
@@ -72,8 +72,7 @@ return [
         ],
 
         'widgets' => [
-            'AccountWidget',
-            'FilamentInfoWidget',
+            'AccountWidget', 'FilamentInfoWidget',
         ],
 
         'resources' => [],
